@@ -16,7 +16,7 @@ data = []
 # almacenandolos en una lista, y ordenandolos de manera decendnente por el numero en la segunda columna utilizando
 # la funcion LAMBDA.
 def read_file():
-    file1 = open("file.ini", 'r')
+    file1 = open("first_info.ini", 'r')
     lines = file1.readlines()
 
     list = []
@@ -25,23 +25,25 @@ def read_file():
     data = []
 
     try:
-        for line in reversed(lines):
-            list = re.split(r"\t+", line)
-
-        linea = list[0]
+        linea = lines[1]
         linea = linea.replace("[", "")
         linea = linea.replace("]", "")
+        linea = linea.replace("\"", "")
+        linea = linea.replace("\n", "")
+        linea = linea.replace("user_list=","")
+        linea = linea.lower()
         names = linea.split(",")
 
         for name in names:
-            if (not indiviualName):
-                indiviualName.append(name)
-                nameCount.append(1)
-            elif (name in indiviualName):
-                nameCount[indiviualName.index(name)] += 1
-            else:
-                indiviualName.append(name)
-                nameCount.append(1)
+            if name != "":
+                if not indiviualName:
+                    indiviualName.append(name)
+                    nameCount.append(1)
+                elif name in indiviualName:
+                    nameCount[indiviualName.index(name)] += 1
+                else:
+                    indiviualName.append(name)
+                    nameCount.append(1)
 
         for name in indiviualName:
             data.append([name, nameCount[indiviualName.index(name)]])
@@ -62,11 +64,11 @@ def get_month_and_year():
     return date
 
 # Metodo para escribir archivo, si existe el archivo se re-escribe, si no existe se crea uno nuevo
-def write_file(data):
-    print("")
+def write_file(data,date):
+    file1 = open(date+".txt", 'w')
+    for info in data:
+        text = info[0] + ": "+ str(info[1])
+        file1.write(text+"\n")
 
 locale.setlocale(locale.LC_ALL, ("es_ES", "UTF-8"))
-data = read_file()
-write_file(data)
-print(data)
-
+write_file(read_file(),get_month_and_year())
