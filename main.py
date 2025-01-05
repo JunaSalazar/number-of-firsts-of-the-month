@@ -1,8 +1,3 @@
-import io
-import time
-import re
-import os, fnmatch
-import sys
 import locale
 from datetime import datetime
 
