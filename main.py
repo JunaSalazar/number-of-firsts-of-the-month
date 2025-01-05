@@ -19,7 +19,6 @@ def read_file():
     file1 = open("first_info.ini", 'r')
     lines = file1.readlines()
 
-    list = []
     nameCount = []
     indiviualName = []
     data = []
