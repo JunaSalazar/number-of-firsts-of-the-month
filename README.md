@@ -13,4 +13,4 @@ This file will contain a list of the names on it, and the times each name is rep
 > Z: 1
 
 ## Language
-This project is done in Python.
+This project is done in Python, to practice.
