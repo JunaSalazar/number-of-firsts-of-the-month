@@ -13,14 +13,12 @@ data = []
 # almacenandolos en una lista, y ordenandolos de manera decendnente por el numero en la segunda columna utilizando
 # la funcion LAMBDA.
 def read_file():
-    file1 = open("first_info.ini", 'r')
-    lines = file1.readlines()
-
-    nameCount = []
-    indiviualName = []
-    data = []
-
     try:
+        file1 = open("first_info.ini", 'r')
+        lines = file1.readlines()
+        nameCount = []
+        indiviualName = []
+        data = []
         linea = lines[1]
         linea = linea.replace("[", "")
         linea = linea.replace("]", "")
