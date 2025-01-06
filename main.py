@@ -48,7 +48,8 @@ def read_file():
         return data
     except Exception as e:
         # Closing file
-        print("Fallo: ", e)
+        return "Fallo: "+str(e)
+        #print("Fallo: ", e)
         file1.close()
 
 # Metodo para obtener el mes y el año actual, se escribe de la siguiente manera MESAÑO
@@ -62,9 +63,14 @@ def get_month_and_year():
 # Metodo para escribir archivo, si existe el archivo se re-escribe, si no existe se crea uno nuevo
 def write_file(data,date):
     file1 = open("firsts_from_"+date+".txt", 'w')
-    for info in data:
-        text = info[0] + ": "+ str(info[1])
-        file1.write(text+"\n")
+    try:
+        for info in data:
+            text = info[0] + ": "+ str(info[1])
+            file1.write(text+"\n")
+        file1.close()
+    except Exception as e:
+        file1.write("Fallo: " + str(e))
+        file1.close()
 
 locale.setlocale(locale.LC_ALL, ("es_ES", "UTF-8"))
 write_file(read_file(),get_month_and_year())
