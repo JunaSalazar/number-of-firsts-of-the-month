@@ -1,3 +1,5 @@
+import pywintypes
+import win32print
 import locale
 from datetime import datetime
 
@@ -59,7 +61,7 @@ def get_month_and_year():
 
 # Metodo para escribir archivo, si existe el archivo se re-escribe, si no existe se crea uno nuevo
 def write_file(data,date):
-    file1 = open(date+".txt", 'w')
+    file1 = open("firsts_from_"+date+".txt", 'w')
     for info in data:
         text = info[0] + ": "+ str(info[1])
         file1.write(text+"\n")
